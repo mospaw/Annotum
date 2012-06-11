@@ -267,10 +267,9 @@ class Anno_XML_Download {
 			$tag_xml = '';
 		}
 		
-		// Article title/subtitle
-		$subtitle =  get_post_meta($article->ID, '_anno_subtitle', true);
+		// Article title
 		$title_xml = '<title-group>';
-		if (!empty($article->post_title) || !empty($subtitle)) {
+		if (!empty($article->post_title)) {
 			$title_xml = '<title-group>';
 			if (!empty($article->post_title)) {
 				$title_xml .= '
@@ -279,10 +278,6 @@ class Anno_XML_Download {
 			else {
 				$title_xml .= '
 				<article-title />';
-			}
-			if (!empty($subtitle)) {
-				$title_xml .= '
-				<subtitle>'.esc_html($subtitle).'</subtitle>';
 			}
 		}
 		$title_xml .= '

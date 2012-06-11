@@ -1056,12 +1056,7 @@ class Kipling_DTD_Parser {
 			$post['post_type'] = 'article';
 			$post['post_content_filtered'] = trim(pq('> body', $article)->html());
 			$post['post_title'] = trim(pq('article-title', $article_meta)->text());
-			
-			$post['postmeta'][] = array(
-				'key' => '_anno_subtitle',
-				'value' => trim(pq('subtitle', $article_meta)->text()),
-			);
-			
+						
 			// Auto generated
 	 		$post['guid'] = '';
 

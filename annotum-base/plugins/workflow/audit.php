@@ -159,7 +159,6 @@ function annowf_registered_post_meta_items() {
 		$workflow_meta_keys = array(
 			'_anno_acknowledgements',
 			'_anno_funding',
-			'_anno_subtitle',
 			'_anno_appendices',
 			'_anno_doi',
 			'_anno_author_snapshot', 
