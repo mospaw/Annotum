@@ -160,14 +160,6 @@ class Anno_Template {
 	
 		return $authors;
 	}
-
-	/**
-	 * Get the subtitle data stored as post meta
-	 */
-	public function get_subtitle($post_id = false) {
-		$post_id = $this->utils->post_id_for_sure($post_id);
-		return get_post_meta($post_id, '_anno_subtitle', true);
-	}
 	
 	/**
 	 * Get the HTML list for authors.
@@ -324,9 +316,8 @@ class Anno_Template {
 		$last_modified = get_the_modified_date('Y M j');
 
 		$title = get_the_title($post_id);
-		$subtitle = $this->get_subtitle($post_id);
-		if ($title && $subtitle) {
-			$title = sprintf(_x('%1$s: %2$s', 'Title and subtitle as a textarea-safe string', 'anno'), $title, $subtitle);
+		if ($title) {
+			$title = sprintf(_x('%1$s', 'Title as a textarea-safe string', 'anno'), $title);
 		}
 
 		$contributors = get_post_meta($post_id, '_anno_author_snapshot', true);
@@ -649,22 +640,6 @@ function anno_open_html() {
 	$post_id = anno_get_post_id();
 	$template = Anno_Keeper::retrieve('template');
 	$template->render_open_html($post_id);
-}
-
-/**
- * Check if an article has a subtitle
- */
-function anno_has_subtitle($post_id = false) {
-	$template = Anno_Keeper::retrieve('template');
-	return (bool) $template->get_subtitle($post_id);
-}
-
-/**
- * Output subtitle data stored as post meta
- */
-function anno_the_subtitle() {
-	$template = Anno_Keeper::retrieve('template');
-	echo $template->get_subtitle();
 }
 
 /**

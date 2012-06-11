@@ -99,7 +99,6 @@ add_filter('post_updated_messages', 'anno_post_updated_messages');
  * Add DTD Meta Boxes
  */ 
 function anno_article_meta_boxes() {
-	add_meta_box('subtitle', _x('Subtitle', 'Meta box title', 'anno'), 'anno_subtitle_meta_box', 'article', 'normal', 'high');
 	add_meta_box('abstract', _x('Abstract', 'Meta box title', 'anno'), 'anno_abstract_meta_box', 'article', 'normal', 'high');
 	add_meta_box('body', _x('Body', 'Meta box title', 'anno'), 'anno_body_meta_box', 'article', 'normal', 'high');
 	add_meta_box('references', _x('References', 'Meta box title', 'anno'), 'anno_references_meta_box', 'article', 'normal', 'high');
@@ -114,13 +113,6 @@ function anno_article_meta_boxes() {
 	}
 }
 add_action('add_meta_boxes_article', 'anno_article_meta_boxes');
-
-function anno_subtitle_meta_box($post) {
-	$html = get_post_meta($post->ID, '_anno_subtitle', true);
-?>
-	<input type="text" name="anno_subtitle" value="<?php echo esc_attr($html); ?>" style="width:100%;" />
-<?php
-}
 
 /**
  * Body meta box markup (stored in content)
@@ -209,7 +201,6 @@ function anno_featured_meta_box($post) {
 function anno_article_save_post($post_id, $post) {
 	if ($post->post_type == 'article') {
 		$anno_meta = array(
-			'anno_subtitle',
 			'anno_funding',
 			'anno_acknowledgements',
 			'anno_featured'
@@ -229,7 +220,6 @@ function anno_article_save_post($post_id, $post) {
 							delete_transient('anno_featured');
 						}
 						break;
-					case 'anno_subtitle':
 					case 'anno_funding':
 					case 'anno_acknowledgements':
 					default:	
