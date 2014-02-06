@@ -131,10 +131,16 @@ function anno_subtitle_meta_box($post) {
 function anno_body_meta_box($post) {
 	global $hook_suffix;
 	if (empty($post->post_content) || $hook_suffix == 'post-new.php') {
-		$content = '<sec>
-			<title></title>
-			<p>&#xA0;</p>
-		</sec>';
+		$article_template = trim(cfct_get_option('article_template'));
+		if (!empty($article_template)) {
+			$content = anno_process_article_template($article_template);
+		}
+		else {
+			$content = '<sec>
+				<title></title>
+				<p>&#xA0;</p>
+			</sec>';
+		}
 	}
 	else {
 		$content = $post->post_content;
@@ -421,4 +427,33 @@ function anno_deposit_doi_meta_box($post) {
 	<!-- <input id="<?php echo $deposit_id; ?>" type="button" value="<?php _ex('Deposit', 'doi deposit button label', 'anno'); ?>"<?php disabled($deposit_enabled, false, true); ?> /> -->
 <?php
 }
-?>
+
+
+function anno_process_article_template($article_template) {
+	$markup = '';
+
+	// Catch the escaped commas
+	$escape_token = '####comma####';
+	error_log($article_template);
+	$article_template = str_replace('/,', $escape_token, $article_template);
+	error_log($article_template);
+	$sections = explode(',', $article_template);
+
+	foreach ($sections as $section_title) {
+		$markup .= '
+			<sec>
+				<title>'.str_replace($escape_token, ',', trim($section_title)).'</title>
+				<p>&#xA0;</p>
+			</sec>';
+	}
+
+	if (empty($markup)) {
+		$markup = '<sec>
+				<title></title>
+				<p>&#xA0;</p>
+			</sec>';
+	}
+
+	return $markup;
+}
+

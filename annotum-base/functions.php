@@ -313,6 +313,23 @@ function anno_settings($settings) {
 
 	$settings = array_merge($anno_settings_top, $settings);
 
+	$anno_settings_article = array(
+		'anno_template' => array(
+			'label' => _x('Theme Settings', 'options heading', 'anno'),
+			'fields' => array(
+				'article_template' => array(
+					'label' => _x('New Article Template', 'options label', 'anno'),
+					'name' => 'article_template',
+					'class' => 'cfct-text-long',
+					'type' => 'text',
+					'help' => __('<div class="cfct-help">This option will create sections with defined titles on new articles. A comma delimits a new section; use <code>/,</code> to escape commas in a title. <div>Ex: <code>Intro, Body, Conclusion</code> will create three sections with titles \'Intro\', \'Body\' and \'Conclusion\' on new articles.</div>', 'anno'),
+				),
+			),
+		),
+	);
+
+	$settings = array_merge($anno_settings_article, $settings);
+
 	$anno_settings_bottom = array(
 		'anno_bottom' => array(
 			'label' => '',
@@ -493,6 +510,7 @@ function anno_defaults($defaults) {
 		'notifications' => 0,
 		'listing_filter' => 0,
 	);
+	$defaults['anno_article_template'] = 'Introduction, Materials and Methods, Results, Discussion, Conclusion';
 	return $defaults;
 }
 add_filter('cfct_option_defaults', 'anno_defaults');
