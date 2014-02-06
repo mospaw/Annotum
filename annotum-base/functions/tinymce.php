@@ -274,7 +274,6 @@ class Anno_tinyMCE {
 			$plugins['annoReferences_base'] = $plugins_dir.'annoreferences/annoreferences.js';
 			$plugins['annoReferences']  =  $plugins_dir.'annoreferences/editor_plugin.js';
 
-			$plugins['annoImages_base'] = $plugins_dir.'annoimages/annoimages.js';
 			$plugins['annoImages']  =  $plugins_dir.'annoimages/editor_plugin.js';
 
 			$plugins['annoTable'] = $plugins_dir.'annotable/editor_plugin.js';
@@ -734,10 +733,6 @@ function anno_preload_dialogs($init) {
 	</div>
 
 	<div style="display:none;">
-	<?php anno_popup_images(); ?>
-	</div>
-
-	<div style="display:none;">
 	<?php anno_popup_quote(); ?>
 	</div>
 
@@ -1137,6 +1132,7 @@ function anno_insert_post_data($data, $postarr) {
 		// Set formatted HTML as the_content
 		$data['post_content'] = addslashes(anno_xml_to_html($xml));
 	}
+
 	return $data;
 }
 add_filter('wp_insert_post_data', 'anno_insert_post_data', null, 2);
