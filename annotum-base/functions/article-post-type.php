@@ -434,9 +434,7 @@ function anno_process_article_template($article_template) {
 
 	// Catch the escaped commas
 	$escape_token = '####comma####';
-	error_log($article_template);
 	$article_template = str_replace('/,', $escape_token, $article_template);
-	error_log($article_template);
 	$sections = explode(',', $article_template);
 
 	foreach ($sections as $section_title) {

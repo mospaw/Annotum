@@ -315,7 +315,7 @@ function anno_settings($settings) {
 
 	$anno_settings_article = array(
 		'anno_template' => array(
-			'label' => _x('Theme Settings', 'options heading', 'anno'),
+			'label' => _x('Article Settings', 'options heading', 'anno'),
 			'fields' => array(
 				'article_template' => array(
 					'label' => _x('New Article Template', 'options label', 'anno'),
