@@ -102,7 +102,7 @@ body .wp-dialog .ui-dialog-title {
 	padding: 0;
 	text-align: left;
 }
-body .wp-dialog .ui-dialog-titlebar-close,
+body .wp-dialog .ui-dialog-titlebar-close.ui-widget.ui-state-default,
 body .wp-dialog .ui-dialog-titlebar-close:hover,
 body .wp-dialog .ui-dialog-titlebar-close:focus {
 	background: url(../img/tinymce/tb-close.png) 0 0 no-repeat;
